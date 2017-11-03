@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:40:16 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 13:53:30 by emaune           ###   ########.fr       */
+/*   Updated: 2017/10/25 11:05:39 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_facts			*init_facts(t_input *input_head)
 						facts->fact = *(index->rule[i] + x);
 						temp = facts;
 						facts->condition = 0;
+						facts->known = 0;
 						facts->next = (t_facts*)malloc(sizeof(t_facts));
 						facts = facts->next;
 						facts->prev = temp;

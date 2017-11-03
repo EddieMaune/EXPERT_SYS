@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 16:36:23 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 17:45:27 by emaune           ###   ########.fr       */
+/*   Updated: 2017/11/03 12:49:06 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ int			main(int argc, char **argv)
 {
 	int		fd;
 	int		i;
+	char	*lhs;
+	char	*rhs;
+	char	*postfix;
+	char	*bit;
 	t_input	*input_head;
 	t_input *temp;
 	t_facts	*facts;
@@ -38,21 +42,18 @@ int			main(int argc, char **argv)
 		temp = input_head;
 		facts = init_facts(temp);
 		init_known_facts(facts, temp);
-		i = 0;
-		while (input_head)
+		inference_engine(input_head, facts);
+	/*	while (input_head)
 		{
 			if (input_head->rule)
 			{
-				i = 0;
-				while (input_head->rule[i])
-				{
-					ft_putstr(input_head->rule[i]);
-					i++;
-				}
-				ft_putchar('\n');
+				lhs = get_lhs(input_head->rule);
+				postfix = convert_side(lhs);
+				bit = postfix_to_bit(postfix, facts);
+				printf("%s\n", bit);
 			}
 			input_head = input_head->next;
-		}
+		}*/
 		free_store(&temp);
 	}
 	else

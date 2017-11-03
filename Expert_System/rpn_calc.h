@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_fact.c                                          :+:      :+:    :+:   */
+/*   rpn-calc.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mmpofu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 13:52:35 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/25 10:59:31 by emaune           ###   ########.fr       */
+/*   Created: 2017/10/24 11:22:46 by mmpofu            #+#    #+#             */
+/*   Updated: 2017/10/26 13:32:10 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RPN_CALC_H
+#define RPN_CALC_H
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "expert_system.h"
 
-int      is_fact(char *s)
+struct	rpn
 {
-	if ((ft_isupper(*s) && ft_strlen(s) == 1))
-		return (1);
-	else if (*s == '!' && ft_isupper(*(s + 1)))
-		return (1);
-	else if ((*s == '!' || ft_isupper(*s)) && (*(s + 1) == ')' || *(s + 2) == ')'))
-		return (1);
-	return (0);
-}
+			struct rpn	*next;
+						struct rpn	*prev;
+										int			nbr;
+};
+
+struct rpn	*head;
+struct rpn	*temp;
+struct rpn	*new_nbr;
+
+#endif

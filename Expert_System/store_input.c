@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:43:29 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 15:17:28 by emaune           ###   ########.fr       */
+/*   Updated: 2017/11/03 13:34:23 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int		empty_line(char *str)
 
 static int		sort_input(t_input *index, int line)
 {
-	int			ret;
+	int			is_valid;
 	char		*str;
 
-	ret = 1;
+	is_valid = 1;
 	if (ft_strchr(index->line, '#'))
 	{
 		index->comment = ft_strdup(ft_strchr(index->line, '#'));
@@ -55,7 +55,7 @@ static int		sort_input(t_input *index, int line)
 			ft_putstr("Brackets invalid: line-");
 			ft_putnbr(line);
 			ft_putchar('\n');
-			ret = 0;
+			is_valid = 0;
 		}
 		str = standardize_string(index->line);
 		index->rule = split_rule(remove_comments(str));
@@ -68,7 +68,7 @@ static int		sort_input(t_input *index, int line)
 		ft_putstr("\n{\n\t--logical connective invalid--");
 		ft_putstr("\n\tExpected: \"<=> or =>\"\n}\n");
 		index->rule = NULL;
-		ret = 0;
+		is_valid = 0;
 	}
 	else
 		index->rule = NULL;
@@ -91,9 +91,9 @@ static int		sort_input(t_input *index, int line)
 		ft_putstr("\n{\n\t--Rule Invalid--");
 		ft_putstr("\n\tExpected: \"Valid rule has two or more facts delimited by logical connective, i.e \'A => Z\'\"\n}\n");
 		index->rule = NULL;
-		ret = 0;
+		is_valid = 0;
 	}
-	return (ret);
+	return (is_valid);
 }
 
 t_input			*store_input(int fd)

@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 08:54:48 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 09:17:38 by emaune           ###   ########.fr       */
+/*   Updated: 2017/10/25 11:06:50 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_facts			*init_known_facts(t_facts *facts, t_input *input_head)
 						if (x->initial_facts[i] == index->fact)
 						{
 							index->condition = 1;
+							index->known = 1;
 							break	;
 						}
 						index = index->next;

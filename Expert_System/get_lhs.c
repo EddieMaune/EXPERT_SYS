@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_lhs.c                                          :+:      :+:    :+:   */
+/*   get_rhs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 15:55:10 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 17:45:29 by emaune           ###   ########.fr       */
+/*   Created: 2017/10/20 10:03:26 by emaune            #+#    #+#             */
+/*   Updated: 2017/10/20 10:56:23 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expert_system.h"
 
-char		*get_lhs(char	**rule)
+char	*get_lhs(char **rule)
 {
 	int		i;
-	char	*lhs;
+	char	*rhs;
 	char	*temp;
 
 	i = 0;
-	lhs = ft_strnew(0);
+	rhs = ft_strnew(0);
 	while (rule[i])
 	{
-		if (!ft_strcmp(rule[i], "<=>") || !ft_strcmp(rule[i], "=>"))
-		{
-			i++;
-			while (rule[i])
-			{
-				temp = lhs;
-				lhs = ft_strjoin(temp, rule[i]);
-				free(temp);
-				i++;	
-			}
+		if (!ft_strcmp(rule[i], "=>") || !ft_strcmp(rule[i], "<=>"))
 			break	;
+		else
+		{
+			temp = rhs;
+			rhs = ft_strjoin(temp, rule[i]);
+			free(temp);
 		}
+		i++;
 	}
-	return (lhs);
+	return (rhs);
 }

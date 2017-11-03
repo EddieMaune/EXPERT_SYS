@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 16:53:57 by emaune            #+#    #+#             */
-/*   Updated: 2017/10/19 16:34:34 by emaune           ###   ########.fr       */
+/*   Updated: 2017/11/03 13:33:05 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXPERT_SYSTEM_H
 
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct		s_input
 {
@@ -30,9 +31,24 @@ typedef struct		s_fact
 {
 	char			fact;
 	int				condition;
+	int				known;
 	struct s_fact	*next;
 	struct s_fact	*prev;
 }					t_facts;
+
+typedef struct		s_stack
+{
+	char			token;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}					t_stack;
+
+typedef struct		s_goals
+{
+	char			*rule;
+	struct s_goals	*next;
+	struct s_goals	*prev;
+}					s_goals;
 
 t_input				*store_input(int fd);
 int					free_store(t_input	**input_head);
@@ -44,5 +60,10 @@ t_facts				*init_facts(t_input *input_head);
 t_facts				*init_known_facts(t_facts *facts, t_input *input_head);
 char				*standardize_string(char *s);
 char				*get_lhs(char **rule);
+char				*get_rhs(char **rule);
+char				*convert_side(char *side);
+char				*postfix_to_bit(char *postfix, t_facts *facts);
+t_facts				*inference_engine(t_input *input_head, t_facts *facts);
+int					rpn_calc(char *str);
 
 #endif
